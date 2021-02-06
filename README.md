@@ -1,28 +1,37 @@
-## Discontinuation
-The laptop has been sold. The PR owner bought a MacBook Pro and has no intention to update this anymore.
+# OpenCore EFI (0.6.4) for FX504GE FX80G
 
-# ASUS-FX504GE-Hackintosh
-Necessary configurations and instructions to get [ASUS TUF FX504GE laptop](https://www.ultrabookreview.com/19725-asus-tuf-fx504ge-review/) working with macOS Mojave 10.14.x and Catalina 10.15.x. High Sierra (10.13.x) can work on these laptops too, but Mojave or higher is strongly recommended. The following should also work with all ASUS FX504G.. laptop variants.
+## Abstract:
 
-# Notes
-1. 128 GB NVMe SSD is used for installing macOS
-2. APFS partition format has to be used
-3. If you are upgrading from the previous version and your partition is HFS+, better boot the installer, unmount the partition and convert it to APFS
+Some modifies have been made. Update OC version to 0.6.4 according to the previous EFI（https://github.com/PoomSmart/ASUS-FX504GE-Hackintosh）. This EFI modified config.plist, change drivers and add some new kext plugins.
 
-# macOS Catalina (10.15) Kexts Requirements
-1. Lilu 1.3.7+
-2. WhateverGreen 1.3.0+
-3. AppleALC 1.3.9+
+## Notes:
 
-# BIOS Settings
-1. Secure Boot: Disabled
-2. SATA mode: AHCI
-3. DVMT-Preallocated: 64MB
 
-## Guide for Clover users (DISCONTINUED)
 
-[Here](Clover/README.md)
+| Parameters  | Configuration                                                |
+| ----------- | ------------------------------------------------------------ |
+| CPU         | intel-8300H                                                  |
+| motherboard | ASUSTeK COMPUTER INC. FX504GE (Coffee Lake)                  |
+| memory      | 16G ( add an other 8G RAM)                                   |
+| storage     | 500G Nvme ( WD SN550, new hard disk repurchased to install MacOS) |
 
-## Guide for OpenCore users
+## BIOS Settings:
 
-[Here](OpenCore/README.md)
+1. VT-d: Disabled
+2. Secure Boot: Disabled
+3. Fast-Boot: Disabled
+4. SATA mode: AHCI
+5. DVMT-Preallocated: 64MB
+
+
+
+## Important：
+
+To disable CFG-LOCK，option `AppleCpuPmCfgLock` and `AppleXcpmCfgLock` under `Kernel -> Quirks` were opened.
+
+Better solution for off CFG-LOCK is in this web: https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#checking-if-your-firmware-supports-cfg-lock-unlocking
+
+
+
+**中文说明：OC的EFI可直接替换安装镜像中的EFI或在安装镜像中新建分区放置OC的EFI文件，作为安装启动使用，安装完毕后，将没有问题的EFI拖入系统EFI分区中作为引导使用。** 
+
